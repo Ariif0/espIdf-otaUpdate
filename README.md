@@ -1,40 +1,69 @@
-# **ESP32 OTA Firmware Project with ESP-IDF*
+\<br\>
 
-## **Description**
+\<div align="center"\>
 
-This project is an ESP32 firmware implementation that supports Over-The-Air (OTA) updates over Wi-Fi. The code is built using the ESP-IDF framework and FreeRTOS, applying an Object-Oriented Programming (OOP) approach in C++ to create a clean, modular, and maintainable architecture.
+# **ESP32 OTA Firmware with C++ & ESP-IDF**
 
-## **Key Features**
+**A robust, object-oriented firmware for ESP32 enabling Over-The-Air (OTA) updates via a secure TCP socket.**
 
-  - **Wi-Fi OTA Updates:** Wirelessly update the device firmware through a password-protected TCP socket.
-  - **LittleFS File System:** Utilizes a `storage` partition with LittleFS to store metadata, such as version information.
-  - **Object-Oriented Architecture:** Program logic is neatly separated into distinct classes (`Application`, `WifiManager`, `OtaManager`).
-  - **LED Status Indicator:** Provides intuitive visual feedback (slow blink when idle, fast blink during an OTA process).
+\<br\>
 
-## **Requirements**
+\<p\>
+\<img alt="Language" src="[https://img.shields.io/badge/Language-C%2B%2B-blue.svg?style=for-the-badge](https://img.shields.io/badge/Language-C%2B%2B-blue.svg?style=for-the-badge)"\>
+\<img alt="Framework" src="[https://img.shields.io/badge/Framework-ESP--IDF-red.svg?style=for-the-badge](https://img.shields.io/badge/Framework-ESP--IDF-red.svg?style=for-the-badge)"\>
+\<img alt="OS" src="[https://img.shields.io/badge/OS-FreeRTOS-green.svg?style=for-the-badge](https://img.shields.io/badge/OS-FreeRTOS-green.svg?style=for-the-badge)"\>
+\<img alt="Toolchain" src="[https://img.shields.io/badge/Toolchain-PlatformIO-orange.svg?style=for-the-badge](https://img.shields.io/badge/Toolchain-PlatformIO-orange.svg?style=for-the-badge)"\>
+\<img alt="Filesystem" src="[https://img.shields.io/badge/Filesystem-LittleFS-lightgrey.svg?style=for-the-badge](https://img.shields.io/badge/Filesystem-LittleFS-lightgrey.svg?style=for-the-badge)"\>
+\</p\>
 
-### **Hardware**
+\</div\>
 
-  - ESP32 Dev Module (or a similar board).
+-----
 
-### **Software**
+### 📖 **Description**
 
-  - Visual Studio Code with the **PlatformIO** extension.
-  - **ESP-IDF** framework v4.4 or newer (managed by PlatformIO).
-  - **Python 3.x** to run the OTA update script.
-  - **Git** for version control.
+This project is an ESP32 firmware implementation enabling Over-The-Air (OTA) updates over Wi-Fi. Built with the ESP-IDF framework and FreeRTOS, it uses an Object-Oriented Programming (OOP) approach for a clean, modular, and maintainable architecture. The code includes Doxygen-ready documentation and memory optimizations (e.g., static buffers, reduced task stack sizes).
 
-## **Getting Started Guide**
+### 🚀 **Key Features**
 
-Follow these steps to configure and run this project on your device.
+  * **Wi-Fi OTA Updates:** Wirelessly update firmware via a password-protected TCP socket.
+  * **LittleFS File System:** Stores metadata (e.g., version info) in a dedicated storage partition.
+  * **OOP Architecture:** Logic is cleanly separated into `Application`, `WifiManager`, and `OtaManager` classes.
+  * **LED Status Indicator:** Provides intuitive visual feedback with slow blinks (1s) when idle and fast blinks (100ms) during an OTA process.
+  * **Secure Configuration:** Isolates sensitive credentials into an untracked `secrets.h` file.
 
-### **1. Project Configuration**
+### 🛠️ **Tech Stack & Requirements**
 
-After cloning this repository, perform the following initial setup:
+#### Hardware
 
-**a. Set Up Wi-Fi Credentials**
+  * ESP32 Dev Module (or a similar board).
 
-Create a new file at `include/secrets.h`. This file is intentionally untracked by Git to keep your credentials secure.
+#### Software
+
+  * Visual Studio Code with the **PlatformIO** extension.
+  * **ESP-IDF** v4.4 or newer (managed by PlatformIO).
+  * **Python 3.x** for the OTA update script.
+  * **Git** for version control.
+
+-----
+
+### 📋 **Getting Started Guide**
+
+Follow these steps to set up, build, and run the project on your ESP32.
+
+#### 1\. **Clone & Configure the Project**
+
+First, clone the repository and configure your local environment.
+
+```bash
+git clone https://github.com/Ariif0/espIdf-otaUpdate.git
+cd espIdf-otaUpdate
+```
+
+Next, create a `secrets.h` file inside the `include/` directory for your Wi-Fi credentials. This file is ignored by Git to keep your secrets safe.
+
+\<details\>
+\<summary\>\<b\>Click to see an example of \<code\>include/secrets.h\</code\>\</b\>\</summary\>
 
 ```cpp
 #pragma once
@@ -42,27 +71,26 @@ Create a new file at `include/secrets.h`. This file is intentionally untracked b
 /**
  * @file secrets.h
  * @brief Sensitive configuration for Wi-Fi credentials.
- *
- * This file defines sensitive configuration constants for Wi-Fi connectivity.
- * It is separated from other configurations to enhance security and maintainability.
  */
 
 // --- Wi-Fi Credentials ---
 #define WIFI_SSID "YOUR_WIFI_SSID"      ///< Replace with your Wi-Fi SSID
 #define WIFI_PASS "YOUR_WIFI_PASSWORD"  ///< Replace with your Wi-Fi password
-
 ```
 
-**b. Other Configurations**
+\</details\>
+\<br\>
 
-  - Adjust parameters such as `OTA_PORT`, `OTA_PASSWORD`, and `LED_PIN` in the `include/config.h` file if needed.
-  - Ensure the `board` in `platformio.ini` matches the ESP32 board you are using (e.g., `esp32doit-devkit-v1`).
+> **Note:**
+>
+>   - Adjust `OTA_PORT`, `OTA_PASSWORD`, or `LED_PIN` in `include/config.h` if needed.
+>   - Ensure the `board` in `platformio.ini` matches your ESP32 variant (e.g., `esp32doit-devkit-v1`).
 
-### **2. Initial Upload (via Cable)**
+#### 2\. **Initial Upload (via Cable)**
 
-Perform the first upload using a USB connection to flash the initial firmware and filesystem.
+Flash the initial firmware and filesystem using a USB connection.
 
-1.  **Upload Main Firmware:**
+1.  **Upload Firmware:**
     ```bash
     pio run --target upload
     ```
@@ -71,51 +99,43 @@ Perform the first upload using a USB connection to flash the initial firmware an
     pio run --target uploadfs
     ```
 
-## **OTA Update Process**
+### 💨 **OTA Update Process**
 
-Once the initial program is running, you can perform subsequent updates wirelessly.
+Perform wireless updates after the initial setup.
 
 1.  **Monitor Device & Get IP Address:**
-    Open the Serial Monitor to view device logs and find its assigned IP address.
-
+    Open the PlatformIO Serial Monitor to view device logs and find its assigned IP address.
     ```bash
     pio device monitor
     ```
-
 2.  **Prepare New Firmware:**
     Make changes to your code (e.g., update `CURRENT_FIRMWARE_VERSION` in `config.h`), then compile to create a new binary file. **Do not upload via cable.**
-
     ```bash
     pio run
     ```
-
-3.  **Send Update with Python Script:**
-    Use the `ota_script.py` to send the newly built `firmware.bin` file.
-
+3.  **Send Update via Python Script:**
+    Use the provided `ota_script.py` to send the new `firmware.bin` file.
     ```bash
     python ota_script.py <ESP32_IP_ADDRESS> .pio/build/esp32doit-devkit-v1/firmware.bin
     ```
+    > **Important:** Replace `<ESP32_IP_ADDRESS>` with your device's IP and ensure the path to `firmware.bin` is correct for your board.
 
-    > **Note:** Replace `<ESP32_IP_ADDRESS>` with your device's IP and ensure the path to `firmware.bin` is correct for your board.
+-----
 
-4.  **Verify OTA Result:**
+### 🔍 **Development & Testing Tips**
 
-      - **Observe the LED:** The LED will blink rapidly (100ms) during the OTA process. If successful, the device will restart. If it fails, it will return to a slow blink (1s).
-      - **Check the Logs:** View the Serial Monitor for status messages like `"OTA update successful. Rebooting in 3 seconds..."` or `"OTA Update Failed!"`.
-
-## **Further Development & Testing**
-
-Here are some ideas for further testing and development:
-
-  - Test the authentication mechanism by attempting an OTA update with an incorrect password.
-  - Test the error handling by trying to send an invalid or corrupted firmware file.
-  - To optimize memory, check a task's stack usage by adding the following log inside its loop:
+  * **Authentication:** Test the OTA process with an incorrect password to verify that the security mechanism correctly rejects the connection.
+  * **Error Handling:** Try sending an invalid or corrupted firmware file to ensure the device handles the error gracefully without crashing.
+  * **Memory Optimization:** To check a task's stack usage, add the following log inside its main loop:
     ```cpp
     ESP_LOGI("TASK_NAME", "Stack High Water Mark: %d bytes", uxTaskGetStackHighWaterMark(NULL) * sizeof(StackType_t));
     ```
+    > This helps you fine-tune stack sizes and save RAM. A remaining margin of \>200 bytes is generally recommended.
 
-> **Note:** This code provides a solid and functional foundation for OTA updates on the ESP-IDF via a TCP socket. Feel free to use and expand upon it for your needs.
-
-## **Author**
+### 👤 **Author**
 
 Developed and maintained by **Muhamad Arif Hidayat**.
+
+### 📜 **License**
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
