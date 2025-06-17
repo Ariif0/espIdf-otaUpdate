@@ -1,0 +1,21 @@
+# .editorconfig
+# Aturan ini membantu menjaga gaya kode yang konsisten
+
+root = true
+
+[*]
+# Gunakan spasi untuk indentasi
+indent_style = space
+indent_size = 4
+
+# Gunakan line feed (LF) untuk akhir baris
+end_of_line = lf
+
+# Gunakan charset UTF-8
+charset = utf-8
+
+# Hapus spasi di akhir baris
+trim_trailing_whitespace = true
+
+# Sisipkan baris baru di akhir file
+insert_final_newline = true

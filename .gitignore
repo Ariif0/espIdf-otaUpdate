@@ -1,0 +1,26 @@
+# File konfigurasi lokal VSCode
+# Aturan ini sudah mencakup semua file di dalam folder .vscode
+.vscode/
+
+# Folder build dan dependensi PlatformIO
+.pio/
+.pids/
+
+# File yang dibuat oleh sistem operasi
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
+Desktop.ini
+
+# File sensitif 
+secrets.h
+
+# File hasil kompilasi, log, atau backup sementara.
+*.o
+*.a
+*.bak
+*.tmp
+*.log
+
+
