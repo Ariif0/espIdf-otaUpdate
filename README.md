@@ -52,9 +52,6 @@ cd espIdf-otaUpdate
 
 Next, create a `secrets.h` file inside the `include/` directory for your Wi-Fi credentials. This file is ignored by Git to keep your secrets safe.
 
-\<details\>
-\<summary\>\<b\>Click to see an example of \<code\>include/secrets.h\</code\>\</b\>\</summary\>
-
 ```cpp
 #pragma once
 
@@ -67,9 +64,6 @@ Next, create a `secrets.h` file inside the `include/` directory for your Wi-Fi c
 #define WIFI_SSID "YOUR_WIFI_SSID"      ///< Replace with your Wi-Fi SSID
 #define WIFI_PASS "YOUR_WIFI_PASSWORD"  ///< Replace with your Wi-Fi password
 ```
-
-\</details\>
-\<br\>
 
 > **Note:**
 >
