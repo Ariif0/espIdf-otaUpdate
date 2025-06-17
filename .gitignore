@@ -6,6 +6,9 @@
 .pio/
 .pids/
 
+# Folder output dokumentasi
+docs/
+
 # File yang dibuat oleh sistem operasi
 # MacOS
 .DS_Store
