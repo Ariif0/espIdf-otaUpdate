@@ -12,7 +12,7 @@
 
 ### 📖 **Description**
 
-This project is an ESP32 firmware implementation enabling Over-The-Air (OTA) updates over Wi-Fi. Built with the ESP-IDF framework and FreeRTOS, it uses an Object-Oriented Programming (OOP) approach for a clean, modular, and maintainable architecture. The code includes Doxygen-ready documentation and memory optimizations (e.g., static buffers, reduced task stack sizes).
+This project is an ESP32 firmware implementation enabling Over-The-Air (OTA) updates over Wi-Fi TCP Socket. Built with the ESP-IDF framework and FreeRTOS, it provides a robust and scalable solution for remotely updating firmware on ESP32-based IoT devices without requiring physical access.
 
 ### 🚀 **Key Features**
 
